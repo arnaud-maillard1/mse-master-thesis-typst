@@ -1,4 +1,4 @@
-#import "@preview/structured-mse-thesis:0.1.0": appendix, report-template
+#import "@preview/structured-mse-thesis:0.1.1": appendix, report-template
 
 #show: report-template.with(
   title: "Example Report",
@@ -6,7 +6,7 @@
   orientation: "Computer Science",
   teacher: "Alice Smith",
   company: "Tartempion SA",
-  confidential: false,
+  confidential: true,
 )
 
 = Introduction
