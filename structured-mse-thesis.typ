@@ -6,7 +6,7 @@
   orientation: "Orientation",
   date: datetime.today(),
   confidential: false,
-  company: "Company Name",
+  company: none,
   body,
   state: "To be finalized",
   file-name: "structured-mse-thesis.typ",
@@ -22,7 +22,6 @@
   set text(font: font)
   set par(justify: true)
   set document(title: title, author: author)
-
 
   let t = (
     en: (
@@ -83,7 +82,6 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
     ],
   )
 
-
   align(center)[
     #v(3em)
     #image("imgs/mse-full.svg", width: 65%)
@@ -119,17 +117,18 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
 
     #align(left)[
       *#tr("produced_by")*:\
-      #text(size: 16pt)[#tr("author") #author]
+      #text(size: 16pt)[#author]
 
       #v(1em)
 
       #text(size: 12pt)[
-        _#tr("supervision")_ #teacher \
-        _#tr("collaboration")_ #company
+        _#tr("supervision")_ #teacher
+        #if company != none [
+          \ _#tr("collaboration")_ #company
+        ]
       ]
     ]
   ]
-
 
   pagebreak()
 
@@ -181,14 +180,12 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
   show figure.where(kind: raw): set figure(supplement: tr("code"))
   show figure.where(kind: table): set figure(supplement: tr("table"))
 
-
   show raw.where(block: false): box.with(
     fill: luma(240),
     inset: (x: 3pt, y: 0pt),
     outset: (y: 3pt),
     radius: 2pt,
   )
-
 
   show raw.where(block: true): block.with(
     fill: luma(250),
@@ -215,7 +212,6 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
   show heading.where(level: 4): set text(
     size: 11pt,
   )
-
 
   outline(target: selector(heading).before(<appendix>), title: tr("toc"), depth: 3)
 
