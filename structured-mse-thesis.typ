@@ -1,3 +1,5 @@
+#import "@preview/glossarium:0.5.10": make-glossary, print-glossary, register-glossary
+
 #let report-template(
   title: "Title",
   subtitle: "Master of Science HES SO in\n Engineering",
@@ -15,6 +17,7 @@
   acknowledgments: [#lorem(50)],
   en-resume: [#lorem(50)],
   fr-resume: [#lorem(50)],
+  glossary: none,
   lang: "en",
   font: "Arial",
 ) = {
@@ -38,6 +41,7 @@
       name: "Name",
       table: "Table",
       code: "Code",
+      glossary: "Glossary",
     ),
     fr: (
       toc: "Table des matières",
@@ -56,6 +60,7 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
       name: "Nom",
       table: "Tableau",
       code: "Code",
+      glossary: "Glossaire",
     ),
   )
 
@@ -213,6 +218,8 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
     size: 11pt,
   )
 
+  show: make-glossary
+
   outline(target: selector(heading).before(<appendix>), title: tr("toc"), depth: 3)
 
   pagebreak()
@@ -241,6 +248,13 @@ provenant d’outils d’intelligence artificielle a été correctement mentionn
     = Résumé (version française)
     #fr-resume
   ]
+
+  if glossary != none {
+    register-glossary(glossary)
+    pagebreak()
+    heading(numbering: none, tr("glossary"))
+    print-glossary(glossary, deduplicate-back-references: true)
+  }
 
   pagebreak()
   // Heading design
